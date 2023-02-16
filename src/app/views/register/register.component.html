@@ -1,0 +1,91 @@
+<div class="jumbotron jumbotron-fluid py-4">
+    <div class="container">
+        <img src="/assets/img/euro.png" class="img-fluid" alt="Responsive image">
+        <br>
+        <br>
+        <p class="lead">Todas as suas apostas em um unico lugar</p>
+
+        <hr>
+    </div>
+</div>
+
+<main class="main-content mt-0">
+    <div class="page-header align-items-start min-vh-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div *ngIf="!check_card">
+                        <h5>Solicitar check de Pagamento</h5>
+                        <div class="card-body">
+                            <div class="text-start">
+                                <div class="input-group input-group-outline my-3">
+                                    <label class="form-label">Valor do check</label>
+                                    <input [(ngModel)]="check.amount" type="number" class="form-control" />
+                                </div>
+
+                                <div class="input-group input-group-outline my-3">
+                                    <label class="form-label">Identificação do Cartão</label>
+                                    <input [(ngModel)]="check.check_id" type="number" class="form-control" />
+                                </div>
+
+                                <div class="text-center">
+                                    <button (click)="_solicitar()" type="button"
+                                        class="btn bg-gradient-primary w-100 my-4 mb-2">Solicitar agora</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div *ngIf="check_card">
+                        <h5>Informações do Check</h5>
+                        <div class="alert alert-success" role="alert">Check gerado com sucesso</div>
+                        <p>Para fazer a sua aposta adicine as Informações a baixo</p>
+                        <hr>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <p><strong>CheckID</strong>: {{check_card.check_id}}</p>
+                                <p><strong>Valor</strong>: {{check_card.valor}}</p>
+                                <p><strong>Data</strong>: {{check_card.date}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-1"></div>
+
+                <div class="col-lg-4">
+                    <div *ngIf="check_card">
+                        <h5 style="text-align: right;">Apostar Agora</h5>
+                        <div class="card-body">
+                            <div class="text-start">
+                                <div class="input-group input-group-outline my-3">
+                                    <select class="form-control" [(ngModel)]="nova_aposta.key">
+                                        <option>Selecionar o código</option>
+                                        <option *ngFor="let codigo of codigos" value="{{codigo.key}}">{{codigo.name}}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="input-group input-group-outline my-3">
+                                    <input disabled [(ngModel)]="nova_aposta.check_id" type="number"
+                                        class="form-control" />
+                                </div>
+
+                                <div class="text-center">
+                                    <button (click)="_registar_aposta()" type="button"
+                                        class="btn bg-gradient-success w-100 my-4 mb-2">Registar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Button trigger modal -->

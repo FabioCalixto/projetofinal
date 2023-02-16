@@ -1,0 +1,64 @@
+<div class="jumbotron jumbotron-fluid py-4">
+    <div class="container">
+        <img src="/assets/img/euro.png" class="img-fluid" alt="Responsive image">
+        <br>
+        <br>
+        <p class="lead">Todas as suas apostas em um unico lugar</p>
+
+        <div class="row">
+            <div class="col-lg-6">
+
+            </div>
+            <div class="col-lg-6" style="text-align: right;">
+                <a [routerLink]="['/register']" class="btn btn-primary btn-lg " role="button" style="">Apostar agora</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+<main class="main-content mt-0">
+    <div class="page-header align-items-start min-vh-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h3>Códigos de Jogos</h3>
+                    <ul class="list-group">
+                        <li *ngFor="let codigo of codigos"
+                            class="list-group-item d-flex justify-content-between align-items-center">
+                            {{codigo.name}}
+                            <span class="badge badge-success badge-pill"
+                                style="background: #0b9819;">{{codigo.key}}</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2"></div>
+
+                <div class="col-lg-6">
+                    <h3 style="text-align: right;">Apostas Abertas</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Chave da Aposta</th>
+                                <th scope="col">CheckID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let aposta of apostas; let i = index">
+                                <th scope="row">{{ i + 1}}</th>
+                                <td>
+                                    <span class="badge badge-success badge-pill"
+                                        style="background: #0c4182;">{{aposta.key}}</span>
+                                </td>
+                                <td>{{aposta.check_id}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
